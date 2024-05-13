@@ -21,4 +21,4 @@ databases:
     databaseName: ledger
     postgresMajorVersion: 15
     user: ledger
-    password: ledger
+    connectionString: postgresql://ledger:ledger@postgres/ledger?sslmode=disable
