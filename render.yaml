@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: ledger
+    env: docker
+    plan: standard
+    dockerfilePath: ./Dockerfile
+    buildCommand: ''
+    startCommand: go run main.go serve
+    envVars:
+      - key: STORAGE_DRIVER
+        value: postgres
+      - key: STORAGE_POSTGRES_CONN_STRING
+        value: postgresql://ledger:ledger@postgres/ledger?sslmode=disable
+      - key: DEBUG
+        value: 'true'
+    healthCheckPath: /
+    dockerContext: /src
+    mounts:
+      - type: volume
+        name: source
+        mountPath: /src
+    dependsOn:
+      - postgres
+
+  - type: database
+    name: ledger-db
+    plan: standard
+    engine: postgres
+    version: 15
+    databases:
+      - name: ledger
+    user: ledger
+    password: ledger
+
+volumes:
+  - name: postgres
+    mountPath: /data/postgres
