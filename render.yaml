@@ -4,7 +4,7 @@ services:
     env: docker
     plan: standard
     dockerfilePath: ./Dockerfile
-    startCommand: go run main.go serve
+    # startCommand: go run main.go serve
     envVars:
       - key: STORAGE_DRIVER
         value: postgres
