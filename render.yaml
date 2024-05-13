@@ -14,23 +14,11 @@ services:
         value: 'true'
     healthCheckPath: /
     dockerContext: /src
-    mounts:
-      - type: volume
-        name: source
-        mountPath: /src
-    dependsOn:
-      - name: ledger-db
 
 databases:
-  - name: ledger-db
+  - name: ledger-database
     plan: standard
-    engine: postgres
-    version: 15
-    databases:
-      - name: ledger
+    databaseName: ledger
+    postgresMajorVersion: 15
     user: ledger
     password: ledger
-
-volumes:
-  - name: postgres
-    mountPath: /data/postgres
