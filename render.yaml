@@ -4,7 +4,6 @@ services:
     env: docker
     plan: standard
     dockerfilePath: ./Dockerfile
-    buildCommand: ''
     startCommand: go run main.go serve
     envVars:
       - key: STORAGE_DRIVER
@@ -20,10 +19,10 @@ services:
         name: source
         mountPath: /src
     dependsOn:
-      - postgres
+      - name: ledger-db
 
-  - type: database
-    name: ledger-db
+databases:
+  - name: ledger-db
     plan: standard
     engine: postgres
     version: 15
