@@ -9,7 +9,7 @@ services:
   - key: PORT
     value: 3068
   - key: NUMARY_STORAGE_POSTGRES_CONN_STRING
-    value: postgres://ledger:v5OiPDDurdy9LiCIrgk3RJUBPuX4j52l@dpg-cp1aft021fec739bi110-a/ledger_m2zk
+    value: postgres://ledger:v5OiPDDurdy9LiCIrgk3RJUBPuX4j52l@dpg-cp1aft021fec739bi110-a.oregon-postgres.render.com/ledger_m2zk
   - key: NUMARY_STORAGE_DRIVER
     value: postgres
   - key: NUMARY_UI_HTTP_BIND_ADDRESS
