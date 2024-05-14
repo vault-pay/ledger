@@ -27,3 +27,4 @@ databases:
     databaseName: ledger
     postgresMajorVersion: "15"
     user: ledger
+    region: ohio
