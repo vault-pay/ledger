@@ -1,23 +1,23 @@
 services:
   - type: web
-    name: ledger
-    env: docker
-    plan: standard
-    dockerfilePath: ./Dockerfile
-    # startCommand: go run main.go serve
+    name: ledger:v1.10.0
+    runtime: image
+    image:
+      url: ghcr.io/formancehq/ledger:v1.10.0
+    plan: starter
     envVars:
-      - key: STORAGE_DRIVER
-        value: postgres
-      - key: STORAGE_POSTGRES_CONN_STRING
-        value: postgresql://ledger:ledger@postgres/ledger?sslmode=disable
-      - key: DEBUG
-        value: 'true'
-      - key: DATABASE_URL
-        fromDatabase:
-          name: ledger-database
-          property: connectionString
-
-    healthCheckPath: /
+    - key: PORT
+      value: 3068
+    - key: NUMARY_STORAGE_POSTGRES_CONN_STRING
+      sync: postgres://ledger:v5OiPDDurdy9LiCIrgk3RJUBPuX4j52l@dpg-cp1aft021fec739bi110-a/ledger_m2zk
+    - key: NUMARY_STORAGE_DRIVER
+      sync: postgres
+    - key: NUMARY_UI_HTTP_BIND_ADDRESS
+      value: 0.0.0.0:3068
+    - key: NUMARY_SERVER_HTTP_BIND_ADDRESS
+      sync: 0.0.0.0:3068
+    region: ohio
+  version: "1"
 
 databases:
   - name: ledger-database
