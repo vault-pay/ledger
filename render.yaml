@@ -28,3 +28,4 @@ databases:
     postgresMajorVersion: "15"
     user: ledger
     region: ohio
+    ipAllowList: [] # private connection only
