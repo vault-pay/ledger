@@ -1,6 +1,6 @@
 services:
 - type: web
-  name: ledger:v1.10.0
+  name: formance-ledger
   runtime: image
   image:
     url: ghcr.io/formancehq/ledger:v1.10.0
@@ -9,7 +9,9 @@ services:
   - key: PORT
     value: 3068
   - key: NUMARY_STORAGE_POSTGRES_CONN_STRING
-    value: postgres://ledger:v5OiPDDurdy9LiCIrgk3RJUBPuX4j52l@dpg-cp1aft021fec739bi110-a.oregon-postgres.render.com/ledger_m2zk
+    fromDatabase:
+      name: ledger-database
+      property: connectionString
   - key: NUMARY_STORAGE_DRIVER
     value: postgres
   - key: NUMARY_UI_HTTP_BIND_ADDRESS
@@ -23,5 +25,5 @@ databases:
   - name: ledger-database
     plan: standard
     databaseName: ledger
-    postgresMajorVersion: 15
+    postgresMajorVersion: "15"
     user: ledger
